@@ -1,0 +1,26 @@
+<div class= "center">
+  <div class="centerThis"><h2> Register </h2></div>
+  <form [formGroup]="rForm" class="example-form" (submit)="registerUser($event,rForm.value)">
+    <div class="input">
+      <md-input-container class="example-full-width">
+        <input type="text" mdInput formControlName="username" placeholder="Email" >
+      </md-input-container>
+      <div class="alert" *ngIf="!rForm.controls['username'].valid && rForm.controls['username'].touched">{{ titleAlert }}</div>
+    </div><br/>
+    <div class="input">
+      <md-input-container class="example-full-width">
+        <input type="password" mdInput formControlName="password" mdTooltip = "Minimum 8 chars" placeholder="Password" >
+      </md-input-container>
+      <div class="alert" *ngIf="!rForm.controls['password'].valid && rForm.controls['password'].touched">{{ "Not Valid" }}</div>
+    </div>
+    <div class="confirmPass">
+      <md-input-container class="example-full-width">
+        <input type="password" mdInput formControlName="confirmPassword" mdTooltip = "Minimum 8 chars"  placeholder="Confirm Password" >
+      </md-input-container>
+      <div class="alert" *ngIf="!rForm.controls['confirmPassword'].valid && rForm.controls['confirmPassword'].touched">{{ "Not Valid" }}</div>
+    </div>
+    <div class="buttons"> 
+      <button type="submit" id="submitButton" md-raised-button [disabled]="!rForm.valid">Submit</button>
+    </div>
+  </form>
+</div>
