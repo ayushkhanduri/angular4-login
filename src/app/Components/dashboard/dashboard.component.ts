@@ -9,7 +9,7 @@ import { Router,ActivatedRoute} from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  private allNotes;
+  allNotes;
 
   constructor(private noteServ: NotesSevice,
   private localService: LocalstorageService,

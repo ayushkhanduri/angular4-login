@@ -3,7 +3,11 @@ import { NgModule,ModuleWithProviders  } from '@angular/core';
 import { RouterModule,Routes } from '@angular/router';
 import {CommonModule } from "@angular/common";
 
-import { allComponents } from './Components';
+import {RegisterComponent} from './Components/register/register.component';
+import {LoginComponent} from './Components/login/login.component';
+import { AddnoteComponent} from './Components/addnote/addnote.component';
+import {DashboardComponent} from './Components/dashboard/dashboard.component';
+//import { allComponents } from './Components';
 import { AppComponent } from './app.component';
 import { MdTooltipModule,MdInputModule, MdButtonModule , MdSnackBarModule,MdCardModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +28,11 @@ import {AuthGuardGuard} from './auth-guard.guard';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-  ].concat(allComponents),
+    RegisterComponent,
+    LoginComponent,
+    DashboardComponent,
+    AddnoteComponent
+  ],
 
   imports: [
     BrowserModule,
