@@ -55,12 +55,15 @@ export class LocalstorageService{
     uniqueNess(inputs){
         let isUserUnique = true;
         let allData = this.getAllUser();
-        for(let i = 0; i< allData.length;i++){
-            if(allData[i].username == inputs.username){
-                isUserUnique = false;
-                break;
+        if(allData){
+            for(let i = 0; i< allData.length;i++){
+                if(allData[i].username == inputs.username){
+                    isUserUnique = false;
+                    break;
+                }
             }
         }
+        
         return isUserUnique;
     }
     checkUserAuthentication(obj,id,callback){
