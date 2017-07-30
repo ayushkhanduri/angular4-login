@@ -37,14 +37,21 @@ export class RegisterComponent implements OnInit {
         username: post.username,
         password: post.password
       }
-      this.localService.registerUser(userData,(data)=>{
-        if(data){
-          this.snackBar.open("User created ! Please Login again! ", "Close",{ 
-            duration:2000
-          });
-          this.router.navigateByUrl('');
-        }
-      });
+      if(this.localService.uniqueNess(userData)){
+        this.localService.registerUser(userData,(data)=>{
+          if(data){
+            this.snackBar.open("User created ! Please Login again! ", "Close",{ 
+              duration:2000
+            });
+            this.router.navigateByUrl('');
+          }
+        });
+      }else{
+        this.snackBar.open("User already present! Change Username", "Close",{ 
+              duration:2000
+            });
+      }
+      
     }
     else{
       this.snackBar.open("Passwords do not match", "Close",{ 

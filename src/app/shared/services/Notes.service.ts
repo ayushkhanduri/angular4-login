@@ -78,6 +78,7 @@ export class NotesSevice{
     updateNote(note){
         let index = this.getIndex(note);
         this.allUserNotes[index] = note;
+        this.pushToUser();
     }
 
     getIndex(obj){

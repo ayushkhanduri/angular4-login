@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteAll(){
-    let del = confirm("Delete the item?");
+    let del = confirm("Delete All items?");
     if(del)
       this.noteServ.deleteAll();
     this.getAll();

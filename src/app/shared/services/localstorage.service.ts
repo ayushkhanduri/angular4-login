@@ -52,6 +52,17 @@ export class LocalstorageService{
         localStorage.setItem("SessionUser",all.id);
     }
 
+    uniqueNess(inputs){
+        let isUserUnique = true;
+        let allData = this.getAllUser();
+        for(let i = 0; i< allData.length;i++){
+            if(allData[i].username == inputs.username){
+                isUserUnique = false;
+                break;
+            }
+        }
+        return isUserUnique;
+    }
     checkUserAuthentication(obj,id,callback){
         let allUsers: UserData;
         allUsers = this.getAllUser();
