@@ -11,7 +11,7 @@
       <md-input-container class="example-full-width">
         <input type="password" mdInput formControlName="password" placeholder="Password" >
       </md-input-container>
-      <div class="alert" *ngIf="!rForm.controls['password'].valid && rForm.controls['password'].touched">{{ "Can not be empty" }}</div>
+      <div class="alert" *ngIf="!rForm.controls['password'].valid && rForm.controls['password'].touched">{{ titleAlert }}</div>
     </div>
     <div class="buttons"> 
       <button type="submit" id="submitButton" md-raised-button [disabled]="!rForm.valid">Submit</button>

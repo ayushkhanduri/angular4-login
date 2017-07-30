@@ -4,6 +4,7 @@ import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { LocalstorageService} from '../../shared/services/localstorage.service';
 import {MdSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

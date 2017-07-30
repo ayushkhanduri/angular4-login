@@ -1,3 +1,19 @@
-<p>
-  addnote works!
-</p>
+<div class= "center">
+  <h2>Add Note!</h2>
+  <form [formGroup]="rForm" class="example-form" (submit)="submitNote($event,rForm.value)">
+    <div>
+      <md-input-container class="example-full-width">
+        <input type="text" mdInput formControlName="heading" placeholder="Heading"/>
+      </md-input-container>
+      <div class="alert" *ngIf="!rForm.controls['heading'].valid && rForm.controls['heading'].touched">{{ titleAlert }}</div>
+    </div>
+    <div>
+      <md-input-container class="example-full-width">
+        <input mdInput #message maxlength="256" formControlName="content" placeholder="Message">
+        <md-hint align="end">{{message.value.length}} / 256</md-hint>
+      </md-input-container>
+    </div>
+    <div class="alert" *ngIf="!rForm.controls['content'].valid && rForm.controls['content'].touched">{{ titleAlert }}</div>
+     <button type="submit" id="submitButton" md-raised-button [disabled]="!rForm.valid">Submit</button>
+  </form>
+</div>

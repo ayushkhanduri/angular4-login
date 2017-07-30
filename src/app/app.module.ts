@@ -1,6 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,ModuleWithProviders } from '@angular/core';
+import { BrowserModule} from '@angular/platform-browser';
+import { NgModule,ModuleWithProviders  } from '@angular/core';
 import { RouterModule,Routes } from '@angular/router';
+import {CommonModule } from "@angular/common";
 
 import { allComponents } from './Components';
 import { AppComponent } from './app.component';
@@ -27,8 +28,9 @@ import {AuthGuardGuard} from './auth-guard.guard';
 
   imports: [
     BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(allRoutes,{enableTracing: true,useHash: true}),
+    RouterModule.forRoot(allRoutes,{useHash: true}),
     FormsModule,
     ReactiveFormsModule,
     MdTooltipModule,
@@ -36,6 +38,7 @@ import {AuthGuardGuard} from './auth-guard.guard';
     MdButtonModule,
     MdSnackBarModule,
     MdCardModule
+
   ],
   providers: [LocalstorageService , NotesSevice,AuthGuardGuard],
   bootstrap: [AppComponent]

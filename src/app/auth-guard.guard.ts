@@ -33,8 +33,7 @@ export class AuthGuardGuard implements CanActivate {
         }else{
           console.log(state.url);
           let x = state.url;
-          let urlId =x.substr(x.indexOf("/dashboard/")+"/dashboard/".length,"/dashboard/".length+1);
-          debugger;
+          let urlId =x.substring(x.indexOf("/dashboard/")+"/dashboard/".length,"/dashboard/".length+1);
           if (id != urlId ){
             goToState= false;
             this.router.navigate(['/dashboard/',id]);

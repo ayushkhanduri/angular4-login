@@ -1,25 +1,25 @@
- <div>   
+ <div class="mainContainer">   
     <div>
         <button id="addItem" (click)="addItem()" md-raised-button >Add Item</button>
-        <button id="logOut" (click)="changeState()" md-raised-button >Log out</button>
+        <button id="logOut" (click)="logout()" md-raised-button >Log out</button>
+        <button id="deleteAll" (click)="deleteAll()" md-raised-button >Delete all</button>
     </div>
-
     <div class="allCards">
-        <md-card class="example-card">
-        <md-card-header>
-            <md-card-title>Shiba Inu</md-card-title>
-        </md-card-header>
-        <md-card-content>
-            <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-            </p>
-        </md-card-content>
-        <md-card-actions>
-            <button md-button>Edit</button>
-            <button md-button>Delete</button>
-        </md-card-actions>
-        </md-card>
+        <div *ngFor= "let x of allNotes" class="board">
+            <md-card class="docs-component-category-list-card mat-card">
+                <md-card-header>
+                    <md-card-title>{{x.heading}}</md-card-title>
+                </md-card-header>
+                <md-card-content>
+                    <p>
+                    {{x.content}}
+                    </p>
+                </md-card-content>
+                <md-card-actions>
+                    <button (click)="editItem(x)" md-button>Edit</button>
+                    <button (click)="deleteItem(x)" md-button>Delete</button>
+                </md-card-actions>
+            </md-card>
+        </div>
     </div>
  </div>

@@ -17,10 +17,17 @@ export const allRoutes =[
     {
         path: 'dashboard/:id',
         canActivate: [AuthGuardGuard],
-        component: DashboardComponent,
         children: [
             {
-                path:'addnote/:id',
+                path: '',
+                component: DashboardComponent
+            },
+            {
+                path:'addnote',
+                component: AddnoteComponent
+            },
+            {
+                path: 'editnote/:itemid',
                 component: AddnoteComponent
             }
         ]

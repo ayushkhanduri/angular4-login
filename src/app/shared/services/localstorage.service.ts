@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {UserData} from '../models/UserModel';
-
+import {NotesSevice} from "./Notes.service";
 @Injectable()
 export class LocalstorageService{
     
     private isUserLoggedIn: boolean = false;
 
-    constructor(){
+    constructor(private notes:NotesSevice){
     
     }
     
@@ -20,9 +20,9 @@ export class LocalstorageService{
                 password: obj.password,
                 notes: [
                     {
-                        id: 0,
-                        heading: "",
-                        content: "",
+                        id: this.notes.guidGenerator(),
+                        heading: `Welcome Note`,
+                        content: `Welcome ${obj.username}`,
                     }
                 ]
             })
@@ -33,9 +33,9 @@ export class LocalstorageService{
                 password: obj.password,
                 notes: [
                     {
-                        id: 0,
-                        heading: "",
-                        content: "",
+                        id: this.notes.guidGenerator(),
+                        heading: "Welcome Note",
+                        content: `Welcome ${obj.username}`,
                     }
                 ]
             }];
