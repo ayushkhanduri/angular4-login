@@ -1,22 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,ModuleWithProviders } from '@angular/core';
+import { RouterModule,Routes } from '@angular/router';
 
 import { allComponents } from './Components';
-import { UIRouterModule } from '@uirouter/angular';
 import { AppComponent } from './app.component';
 import { MdTooltipModule,MdInputModule, MdButtonModule , MdSnackBarModule,MdCardModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 
-import { allRoutes } from './routes';
-import {uiRouterConfigFn} from './routes.config';
 
+import { allRoutes } from './routes';
 
 import {HeaderComponent} from './shared/templates/header.component';
 import {FooterComponent} from './shared/templates/footer.component';
 
 import {LocalstorageService} from  './shared/services/localstorage.service';
 import {NotesSevice} from './shared/services/Notes.service';
+import {AuthGuardGuard} from './auth-guard.guard';
 
 @NgModule({
   declarations: [
@@ -28,13 +28,7 @@ import {NotesSevice} from './shared/services/Notes.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    UIRouterModule.forRoot(
-      {
-        states:allRoutes,
-        useHash: true,
-        config: uiRouterConfigFn
-      }
-    ),
+    RouterModule.forRoot(allRoutes,{enableTracing: true,useHash: true}),
     FormsModule,
     ReactiveFormsModule,
     MdTooltipModule,
@@ -43,7 +37,7 @@ import {NotesSevice} from './shared/services/Notes.service';
     MdSnackBarModule,
     MdCardModule
   ],
-  providers: [LocalstorageService , NotesSevice],
+  providers: [LocalstorageService , NotesSevice,AuthGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

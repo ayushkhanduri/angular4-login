@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotesSevice } from '../../shared/services/Notes.service';
 import { LocalstorageService} from '../../shared/services/localstorage.service'
-import { StateService} from '@uirouter/angular';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +11,9 @@ import { StateService} from '@uirouter/angular';
 export class DashboardComponent implements OnInit {
   private allNotes;
 
-  constructor(private noteServ: NotesSevice,private stateService:StateService,private localService: LocalstorageService) { 
+  constructor(private noteServ: NotesSevice,
+  private localService: LocalstorageService,
+  private router:Router) { 
   }
 
   ngOnInit() {
@@ -25,11 +27,11 @@ export class DashboardComponent implements OnInit {
       content: ''
     };
     this.noteServ.setCurrentNote(obj);
-    this.stateService.go('dashboard.add',{id: this.allNotes.length||1});
+    this.router.navigate(['/addnote/', this.allNotes.length||1]);
   }
 
   changeState(){
     this.localService.logoutUser();
-    this.stateService.go('login');
+    this.router.navigate(['']);
   }
 }

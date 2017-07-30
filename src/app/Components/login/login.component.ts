@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
-import { StateService } from '@uirouter/angular';
 import { LocalstorageService} from '../../shared/services/localstorage.service';
 import {MdSnackBar} from '@angular/material';
+import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   username: string = "";
   password: string = "";
   titleAlert: string ="Empty/Not in the correct format";
-  constructor(private fb: FormBuilder, private stateService: StateService,
+  constructor(private fb: FormBuilder,private router:Router,
   private localService: LocalstorageService,private snackBar: MdSnackBar) {
     this.rForm =fb.group({
       'username': [null,Validators.compose([Validators.email,Validators.required])],
@@ -33,12 +34,13 @@ export class LoginComponent implements OnInit {
       username: post.username,
       password: post.password
     };
-    this.localService.checkUserAuthentication(userObject,(sessionCreated)=>{
+    this.localService.checkUserAuthentication(userObject,null,(sessionCreated)=>{
       if(sessionCreated){
         this.snackBar.open(`User Authenticated! Welcome ${userObject.username}`,"Close",{
           duration: 2000
         });
-        this.stateService.go('dashboard' ,{"id": JSON.parse(localStorage.getItem("SessionUser"))});
+        let id = JSON.parse(localStorage.getItem("SessionUser"));
+        this.router.navigate(['/dashboard/',id]);
       }
       else{
         this.snackBar.open('Invalid Username password ! Try again',"Close",{

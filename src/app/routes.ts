@@ -2,27 +2,32 @@ import {RegisterComponent} from './Components/register/register.component';
 import {LoginComponent} from './Components/login/login.component';
 import {DashboardComponent} from './Components/dashboard/dashboard.component';
 import {AddnoteComponent} from './Components/addnote/addnote.component';
-
-export let allRoutes =[
+import {AuthGuardGuard} from './auth-guard.guard';
+export const allRoutes =[
     {
-        name: 'login',
-        url: '/login',
-        component: LoginComponent
+        path: '',
+        component: LoginComponent,
+        canActivate: [AuthGuardGuard]
     },
     {
-        name: 'register',
-        url: '/register',
-        component: RegisterComponent
-    
+        path: 'register',
+        component: RegisterComponent,
+        canActivate: [AuthGuardGuard]
     },
     {
-        name: 'dashboard',
-        url: '/dashboard/:id',
-        component: DashboardComponent
+        path: 'dashboard/:id',
+        canActivate: [AuthGuardGuard],
+        component: DashboardComponent,
+        children: [
+            {
+                path:'addnote/:id',
+                component: AddnoteComponent
+            }
+        ]
     },
-    {
-        name: 'dashboard.add',
-        url: '/add/:id',
-        component: AddnoteComponent
-    },
+    // {
+    //     name: 'dashboard.add',
+    //     url: '/add/:id',
+    //     component: AddnoteComponent
+    // },
 ]

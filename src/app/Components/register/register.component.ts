@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
-import { StateService} from '@uirouter/angular';
+
 import { LocalstorageService} from '../../shared/services/localstorage.service';
 import {MdSnackBar} from '@angular/material';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   titleAlert: string ="Empty/Not in the correct format";
   
   constructor(private fb: FormBuilder,private localService: LocalstorageService ,
-  private stateService: StateService,private snackBar: MdSnackBar) {
+  private snackBar: MdSnackBar,private router:Router) {
     this.rForm =fb.group({
       'username': [null,Validators.compose([Validators.email,Validators.required])],
       'password': [null,Validators.compose([Validators.required,Validators.minLength(8)])],
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit {
           this.snackBar.open("User created ! Please Login again! ", "Close",{ 
             duration:2000
           });
-          this.stateService.go('login');
+          this.router.navigateByUrl('');
         }
       });
     }

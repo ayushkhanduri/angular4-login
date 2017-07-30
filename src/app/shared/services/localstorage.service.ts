@@ -52,17 +52,29 @@ export class LocalstorageService{
         localStorage.setItem("SessionUser",all.id);
     }
 
-    checkUserAuthentication(obj,callback){
+    checkUserAuthentication(obj,id,callback){
         let allUsers: UserData;
         allUsers = this.getAllUser();
         if(allUsers){
-            for(let i=0 ;i<allUsers.length;i++){
-                if(allUsers[i].username === obj.username && allUsers[i].password === obj.password){
-                    this.isUserLoggedIn = true;
-                    this.createSession(allUsers[i]);
+            if(obj){
+                for(let i=0 ;i<allUsers.length;i++){
+                    if(allUsers[i].username == obj.username && allUsers[i].password == obj.password){
+                        this.isUserLoggedIn = true;
+                        this.createSession(allUsers[i]);
+                        break;   
+                    }
+                }
 
+            }
+            else if(id){
+                for(let i=0 ;i<allUsers.length;i++){
+                    if(allUsers[i].id == id){
+                        this.isUserLoggedIn = true;
+                        break;   
+                    }
                 }
             }
+            
         }
         callback(this.isUserLoggedIn);
     }
