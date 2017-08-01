@@ -1,3 +1,8 @@
+# About the project
+
+This is a note taking application where the user can create notes. There is login and authentication already implemented and routes are protected using auth guards . The app uses angular material design . The working link of the app is 
+https://serene-hamlet-20673.herokuapp.com/
+
 # TodoLogin
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.4.
